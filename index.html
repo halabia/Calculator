@@ -1,36 +1,47 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Calculator</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="everything">
-            <h1>Calculator</h1>
-            <p class="display"></p>
-            <div id="container">
-                <div class="content" id="seven">7</div>
-                <div class="content" id="eight">8</div>
-                <div class="content" id="nine">9</div>
-                <div class="content" id="plus">+</div>
-                <div class="content" id="four">4</div>
-                <div class="content" id="five">5</div>
-                <div class="content" id="six">6</div>
-                <div class="content" id="minus">-</div>
-                <div class="content" id="one">1</div>
-                <div class="content" id="two">2</div>
-                <div class="content" id="three">3</div>
-                <div class="content" id="multiply">x</div>
-                <div class="content" id="AC">AC</div>
-                <div class="content" id="zero">0</div>
-                <div class="content" id="=">=</div>
-                <div class="content" id="divide">/</div>
-            </div>
-        </div>
-            <script src="javascript.js" async defer></script>
-    </body>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+	<section class="container-parent">
+		<div class="container__child">
+			<div class="calculator">
+				<div class="display">
+					<div class="calculator-display">
+						<output class="user-input" type="text" id="user-input">0</output>	
+						<output class="result" type="text" id="result">&nbsp;</output>	
+					</div>					
+				</div>
+				<div class="all-buttons">
+					<button class="allclear" data-type="reset" id="allclear" >AC</button>
+					<button class="clear" data-type="backspace" id="clear" >C</button>
+					<button class="operators" data-type="operator" id="remainder" value="%" >&#37</button>
+					<button class="operators" data-type="operator" id="divide" value="/" >&#247</button>
+					<button class="digits" data-type="number" id="digit-7" value="7" >7</button>
+					<button class="digits" data-type="number" id="digit-8" value="8" >8</button>
+					<button class="digits" data-type="number" id="digit-9" value="9" >9</button>
+					<button class="operators" data-type="operator" id="plus" value="+" >&#43</button>
+					<button class="digits" data-type="number" id="digit-4" value="4" >4</button>
+					<button class="digits" data-type="number" id="digit-5" value="5" >5</button>
+					<button class="digits" data-type="number" id="digit-6" value="6" >6</button>
+					<button class="operators" data-type="operator" id="minus" value="-" >&#45</button>
+					<button class="digits" data-type="number" id="digit-1" value="1" >1</button>
+					<button class="digits" data-type="number" id="digit-2" value="2" >2</button>
+					<button class="digits" data-type="number" id="digit-3" value="3" >3</button>
+					<button class="operators" data-type="operator" id="multiply" value="x" >&#215</button>
+					<button class="digits" data-type="number" id="digit-0" value="0" >0</button>
+					<button class="decimal" data-type="decimal" id="decimal" value="." >.</button>
+					<button class="equals" data-type="equal" id="equals" value="=" >&#61</button>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<footer>
+	</footer>
+	<script src="./javascript.js"></script>
+</body>
 </html>
