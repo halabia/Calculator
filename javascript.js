@@ -1,91 +1,155 @@
-let add = (a,b) => a+b;
-let subtract = (a,b) => a-b;
-let multiply = (a,b) => a*b;
-let divide = (a,b) => a/b;
+// const calcKeys = document.querySelector('.all-buttons');
+// const userInput = document.querySelector('#user-input');
+// const calculator = document.querySelector('.calculator');
+// const displayResult = document.querySelector('#result');
+// let isEqualsPressed = false;
+// let equation = 0; //separate variable to calculate equation in backend
+// let checkForDecimal = ''; //to store each number and check if decimal is pressed
 
-let operate = (a,b,sign) => {
-    if (sign === "+") {
-        console.log(add(a,b))
-    }
-    if (sign === "-") {
-        console.log(subtract(a,b))
-    }    
-    if (sign === "x") {
-        console.log(multiply(a,b))
-    }    
-    if (sign === "/") {
-        console.log(divide(a,b))
-    }
-}
+// calcKeys.addEventListener('click', (event) => {
 
-const addButton = document.querySelector('#plus');
-addButton.addEventListener('click', () => {
-    operate(3,5,"+")
-  });
-const subtractButton = document.querySelector('#minus');
-subtractButton.addEventListener('click', () => {
-    operate(3,5,"-")
-});
-const multiplyButton = document.querySelector('#multiply');
-multiplyButton.addEventListener('click', () => {
-    operate(3,5,"x")
-});
+// 	//Check if click is on the button and not on the container
+// 	if(!event.target.closest('button')) return;
 
-const divideButton = document.querySelector('#divide');
-divideButton.addEventListener('click', function (e) {
-    operate(3,5,"/")
-});
+// 	const key = event.target;
+// 	const keyValue = key.textContent;
+// 	let inputDisplay = userInput.textContent;
+// 	const { type } = key.dataset;
+// 	const { previousKeyType } = calculator.dataset;
+		
+// 	//If any number button is pressed
+// 	if(type === 'number' && !isEqualsPressed) {
+// 		/*
+// 			1. Inital screen display is 0
+// 			2. replace initial display with user input if number is pressed
+// 			3. else concat with operator
+// 			4. if screen display is anything other than number concat the display
+// 		*/
+// 		if (inputDisplay === '0') {
+// 			userInput.textContent = (previousKeyType === 'operator') ? inputDisplay + keyValue : keyValue;
+// 			equation = (previousKeyType === 'operator') ? equation + key.value : key.value;
+// 			checkForDecimal = checkForDecimal + keyValue;
+// 		}else {
+// 			//Check length so that number stays within display box
+// 			//else replace it with exponential
+// 			if (checkForDecimal.length >= 19) {
+// 				var replaceNumber = checkForDecimal;
+// 				checkForDecimal = Number(checkForDecimal).toExponential(2);
+// 				userInput.textContent = inputDisplay.replace(replaceNumber, checkForDecimal);
+// 			}else {
+// 				//Check for Infinity OR NaN in Display
+// 				userInput.textContent = userInput.textContent.includes('N') ? 'NaN' : 
+// 										userInput.textContent.includes('I') ? 'Infinity' : inputDisplay + keyValue;
+// 				equation = equation + key.value;
+// 				checkForDecimal = checkForDecimal + keyValue;
+// 			}
+// 		}
+// 	}
 
+// 	/*
+// 		1. Check if operator is pressed AND Equals To (=) is not yet pressed
+// 		2. AND Display dose not include Infinity
+// 		3. Replace checkForDecimal with blank to store next number
+// 	*/
+// 	if (type === 'operator' && previousKeyType !== 'operator'
+// 		&& !isEqualsPressed && !inputDisplay.includes('Infinity')) {
+// 		//calculator.dataset.firstNumber = checkForDecimal;
+// 		// calculator.dataset.operator = key.id;
+// 		checkForDecimal = '';
+// 		userInput.textContent = inputDisplay + ' ' + keyValue + ' ';
+// 		equation = equation + ' ' + key.value + ' ';
 
-const display = document.getElementsByClassName("display");
-display[0].addEventListener('click', () => {
-    display[0].textContent = 1;
-    display[0].setAttribute('style', 'color: red;');
-    operate(3,5,"x")
-});
+// 	}
 
-let calculatorDisplay = (picker) => {
-        display[0].textContent = picker;
-        display[0].setAttribute('style', 'color: black;');
-}
+// 	/*
+// 		1. Check if Decimal button is pressed AND Equals To (=) is not yet pressed
+// 		2. AND was a previously pressed button a number or was display a 0
+// 		3. #2 required so that if user presses decimal after operator, it is not displayed
+// 		4. check if the number already contains a decimal
+// 	*/
+// 	if (type === 'decimal' && (previousKeyType === 'number' || inputDisplay === '0')
+// 		&& !isEqualsPressed && !inputDisplay.includes('Infinity')) {
+// 		if (!checkForDecimal.includes('.')) {
+// 			userInput.textContent = inputDisplay + keyValue;
+// 			equation = equation + key.value;
+// 			checkForDecimal = checkForDecimal + keyValue;
+// 		}
+// 	}
 
-const oneButton = document.querySelector('#one');
-oneButton.addEventListener('click', function (e) {
-    calculatorDisplay(1)
-});
-const twoButton = document.querySelector('#two');
-twoButton.addEventListener('click', function (e) {
-    calculatorDisplay(2)
-});
-const threeButton = document.querySelector('#three');
-threeButton.addEventListener('click', function (e) {
-    calculatorDisplay(3)
-});
-const fourButton = document.querySelector('#four');
-fourButton.addEventListener('click', function (e) {
-    calculatorDisplay(4)
-});
-const fiveButton = document.querySelector('#five');
-fiveButton.addEventListener('click', function (e) {
-    calculatorDisplay(5)
-});
-const sixButton = document.querySelector('#six');
-sixButton.addEventListener('click', function (e) {
-    calculatorDisplay(6)
-});
-const sevenButton = document.querySelector('#seven');
-sevenButton.addEventListener('click', function (e) {
-    calculatorDisplay(7)
-});
-const eightButton = document.querySelector('#eight');
-eightButton.addEventListener('click', function (e) {
-    calculatorDisplay(8)
-});
-const nineButton = document.querySelector('#nine');
-nineButton.addEventListener('click', function (e) {
-    calculatorDisplay(9)
-});
-const zeroButton = document.querySelector('#zero');
-zeroButton.addEventListener('click', function (e) {
-    calculatorDisplay(0)
-});
+// 	if ((type === 'backspace' || type === 'reset') && inputDisplay !== '0') {
+// 		if (type === 'backspace' && !isEqualsPressed) {
+// 			userInput.textContent = inputDisplay.substring(0, inputDisplay.length - 1);
+// 			equation = equation.substring(0, equation.length - 1);
+// 			checkForDecimal = checkForDecimal.substring(0, checkForDecimal.length - 1);
+// 		} else {
+// 			inputDisplay = '0';
+// 			userInput.textContent = inputDisplay;
+// 			displayResult.innerHTML = '&nbsp;';
+// 			isEqualsPressed = false;
+// 			equation = '';
+// 			checkForDecimal = '';
+// 		}
+
+// 	}
+
+// 	//Send equation for calculation after Equals To (=) is pressed
+// 	if (type === 'equal') {
+//     	// Perform a calculation
+// 	    isEqualsPressed = true;
+// 	    const finalResult = handleEquation(equation);
+	    
+// 	    if (finalResult || finalResult === 0) {
+// 	    	displayResult.textContent = (!Number.isInteger(finalResult)) ? finalResult.toFixed(2) : 
+// 	    								(finalResult.toString().length >= 16) ? finalResult.toExponential(2) : finalResult ;
+// 	    } else {
+// 	    	displayResult.textContent = 'Math Error';
+// 	    }
+	    
+//   }
+
+// 	calculator.dataset.previousKeyType = type;
+// })
+
+// //Function to calculate result based on each operator
+// function calculate(firstNumber, operator, secondNumber) {
+
+// 	firstNumber = Number(firstNumber);
+// 	secondNumber = Number(secondNumber);
+
+//     if (operator === 'plus' || operator === '+') return firstNumber + secondNumber;
+//     if (operator === 'minus' || operator === '-') return firstNumber - secondNumber;
+//     if (operator === 'multiply' || operator === 'x') return firstNumber * secondNumber;
+//     if (operator === 'divide' || operator === '/') return firstNumber / secondNumber;
+//     if (operator === 'remainder' || operator === '%') return firstNumber % secondNumber;
+// }
+
+// function handleEquation(equation) {
+
+// 	equation = equation.split(" ");
+// 	const operators = ['/', 'x', '%', '+', '-'];
+// 	let firstNumber;
+// 	let secondNumber;
+// 	let operator;
+// 	let operatorIndex;
+// 	let result;
+
+// 	/*  
+// 		1. Perform calculations as per BODMAS Method
+// 		2. For that use operators array
+// 		3. after calculation of 1st numbers replace them with result
+// 		4. use splice method
+
+// 	*/
+// 	for (var i = 0; i < operators.length; i++) {
+// 		while (equation.includes(operators[i])) {
+// 			operatorIndex = equation.findIndex(item => item === operators[i]);
+// 			firstNumber = equation[operatorIndex-1];
+// 			operator = equation[operatorIndex];
+// 			secondNumber = equation[operatorIndex+1];
+// 			result = calculate(firstNumber, operator, secondNumber);
+// 			equation.splice(operatorIndex - 1, 3, result);
+// 		}
+// 	}
+
+// 	return result;
+// }
